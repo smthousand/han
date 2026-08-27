@@ -1,0 +1,195 @@
+/* ═══════════════════════════════════════════════════════════
+   home.css — index.html 전용 스타일
+   base.css 를 먼저 불러온 뒤 이 파일을 불러온다.
+   ═══════════════════════════════════════════════════════════ */
+
+/* type */
+.h1{font-size:clamp(40px,6.6vw,104px);font-weight:500;letter-spacing:-0.035em;line-height:1.02;}
+.h2{font-size:clamp(28px,3.4vw,52px);font-weight:500;letter-spacing:-0.028em;line-height:1.1;}
+
+section{padding-top:150px;}
+
+/* hero */
+.hero{height:100vh;position:relative;overflow:hidden;padding:0;}
+.hero img{height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.82);
+  transform:scale(1.06);transition:transform 3s cubic-bezier(.16,1,.3,1),opacity .6s;}
+body.ready .hero img{transform:scale(1);}
+.hero .shade{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,transparent 30%,transparent 62%,rgba(0,0,0,.72) 100%);}
+
+/* 벽 — 셀이 사라지며 작품이 드러난다. 글로우 없음. */
+#wall{position:absolute;inset:0;display:grid;gap:1px;z-index:2;}
+#wall i{background:var(--bg);transition:opacity .75s cubic-bezier(.16,1,.3,1);}
+#wall i.gone{opacity:0;}
+#wall i.keep{background:var(--accent);}
+
+.hero .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:28px;z-index:4;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .8s ease 1.8s,transform .8s cubic-bezier(.16,1,.3,1) 1.8s;}
+body.ready .hero .cap{opacity:1;transform:translateY(0);}
+.hero .cap .t{font-size:17px;}
+.hero .cap .lb{margin-top:4px;}
+.dots{display:flex;gap:6px;}
+.dots i{width:22px;height:1px;background:rgba(255,255,255,.3);cursor:pointer;transition:background .3s;}
+.dots i.on{background:#fff;}
+
+/* intro */
+.intro .h1{max-width:16ch;}
+.intro .bd{margin-top:36px;max-width:52ch;}
+
+/* plates(teaser) — 왼쪽 수거 당시, 오른쪽 설치 이후.
+   이음매 하나가 진술이다. 아래로 갈수록 작아지고 멀어지고 어긋난다. */
+.plates{position:relative;}   /* padding-top 은 전역 section 규칙(150px)을 따른다 */
+.plate{position:relative;}
+.plate .duo{display:grid;grid-template-columns:1fr 1fr;position:relative;}
+.plate .duo figure{overflow:hidden;aspect-ratio:1;background:#070707;}
+.plate .duo img{height:100%;object-fit:cover;
+  transform:scale(1.04);transition:transform 1.7s cubic-bezier(.16,1,.3,1);}
+.plate.in .duo img{transform:scale(1);}
+.plate .duo .raw img{filter:grayscale(1) brightness(.44) contrast(1.4);}
+.plate .duo .done img{filter:grayscale(1) brightness(.9) contrast(1.03);}
+.plate .seam{position:absolute;left:50%;top:0;width:1px;background:rgba(255,255,255,.55);
+  height:0;transition:height 1.4s cubic-bezier(.16,1,.3,1) .25s;}
+.plate.in .seam{height:100%;}
+/* 언어는 셋뿐 — 재료, 수량, 연도 */
+.plate .fact{display:flex;gap:18px;padding-top:12px;flex-wrap:wrap;}
+.plate .fact span{font-size:11px;color:var(--dim);letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;}
+
+/* ══ archive ══
+   선 규칙 하나로 통일한다.
+     · 모든 괘선은 --hair 한 종류. 굵기를 섞지 않는다.
+     · 헤더 아래 수평선은 사이드바와 테이블을 끊김 없이 가로지른다.
+       (.side h3 와 .thead div 의 높이를 같게 맞춰 선을 잇는다)
+     · 세로선은 사이드바 오른쪽 하나뿐. 셀마다 두르지 않는다. */
+.arv{display:grid;grid-template-columns:200px 1fr;
+  padding-top:0;margin-top:150px;border-top:1px solid var(--hair);}
+
+.side{border-right:1px solid var(--hair);
+  position:sticky;top:var(--hdr);align-self:start;
+  max-height:calc(100vh - var(--hdr));overflow:auto;padding-bottom:50px;}
+.side h3{padding:13px 20px;border-bottom:1px solid var(--hair);}
+.side .yl a{display:flex;justify-content:space-between;padding:10px 20px;
+  font-size:12px;color:var(--dim);border-bottom:1px solid var(--hair);transition:color .3s,background .3s;
+  font-variant-numeric:tabular-nums;}
+.side .yl a:hover{color:var(--fg);}
+.side .yl a.on{background:var(--accent);color:#000;}
+.side .fl{margin-top:30px;border-top:1px solid var(--hair);}
+.side .fl button{display:block;width:100%;text-align:left;
+  border-bottom:1px solid var(--hair);font-size:12px;color:var(--dim);
+  padding:10px 20px;transition:color .3s,background .3s;}
+.side .fl button:hover{color:var(--fg);}
+.side .fl button.on{background:var(--accent);color:#000;}
+
+.tbl{min-width:0;}
+.thead{display:grid;grid-template-columns:56px 1.6fr 1fr .7fr .55fr 44px;
+  border-bottom:1px solid var(--hair);
+  position:sticky;top:var(--hdr);background:var(--bg);z-index:20;}
+.thead div{padding:13px 14px;font-size:11px;color:var(--dim);letter-spacing:.01em;}
+.thead div:last-child{text-align:center;}
+
+.tr{display:grid;grid-template-columns:56px 1.6fr 1fr .7fr .55fr 44px;
+  border-bottom:1px solid var(--hair);cursor:pointer;transition:background .35s ease;}
+.tr:hover{background:rgba(225,86,42,.07);}
+.tr.hide{display:none;}
+.tr:focus-visible{outline:1px solid var(--accent);outline-offset:-1px;}
+.tr > div{padding:15px 14px;display:flex;align-items:center;
+  font-size:12px;color:var(--mid);font-variant-numeric:tabular-nums;}
+.tr > div:last-child{justify-content:center;}
+.tr .t{font-size:15px;color:var(--fg);letter-spacing:-0.012em;transition:color .35s;
+  font-variant-numeric:normal;}
+.tr:hover .t{color:var(--accent);}
+.tr .x{color:var(--accent);font-size:13px;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.tr.open .x{transform:rotate(45deg);}
+
+/* 펼침 패널 — .tr>div 보다 특이도가 높아 !important 없이 패딩을 덮는다 */
+.tr > .det{grid-column:1/-1;height:0;overflow:hidden;padding:0;display:block;
+  transition:height .55s cubic-bezier(.16,1,.3,1);}
+.tr.open > .det{height:266px;}   /* 22+220+24 = .in 실제 높이 */
+.det .in{display:grid;grid-template-columns:340px 1fr;gap:24px;padding:22px 14px;}
+
+/* 이미지 클릭 → 상세 페이지 */
+.det .im{position:relative;display:block;height:220px;overflow:hidden;background:#0d0d0d;}
+.det .im img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.6);
+  transform:scale(1.02);transition:transform 1s cubic-bezier(.16,1,.3,1),filter .5s ease;}
+.det .im:hover img{transform:scale(1.06);filter:grayscale(0) brightness(.82);}
+.det .im .go{position:absolute;left:14px;bottom:12px;z-index:2;
+  font-size:11px;color:#fff;letter-spacing:.01em;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .35s ease,transform .45s cubic-bezier(.16,1,.3,1);}
+.det .im:hover .go,.det .im:focus-visible .go{opacity:1;transform:translateY(0);}
+.det .im::after{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.65));
+  opacity:0;transition:opacity .35s ease;}
+.det .im:hover::after{opacity:1;}
+.det .im:focus-visible{outline:1px solid var(--accent);outline-offset:-1px;}
+
+.det .tx{font-size:14px;line-height:1.7;color:var(--mid);max-width:56ch;}
+.det .tx b{display:block;font-size:11px;color:var(--dim);font-weight:400;margin-bottom:10px;}
+
+/* statement (현재 HTML에서는 주석 처리되어 있으나 스타일은 남겨둔다) */
+.say p{font-size:clamp(24px,3vw,44px);font-weight:400;line-height:1.32;letter-spacing:-0.028em;max-width:20ch;}
+.say p + p{margin-top:28px;}
+.say .accent{color:var(--accent);}
+
+/* numbers (현재 HTML에서는 주석 처리되어 있으나 스타일은 남겨둔다) */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+.nums .v{font-size:clamp(30px,3.8vw,58px);font-weight:500;letter-spacing:-0.035em;line-height:1;}
+.nums .lb{margin-top:12px;}
+
+/* feature (현재 HTML에서는 주석 처리되어 있으나 스타일은 남겨둔다) */
+.feat .h2{max-width:18ch;}
+.feat .bd{margin-top:32px;max-width:50ch;}
+.feat .fr{margin-top:56px;aspect-ratio:16/9;overflow:hidden;background:#0d0d0d;}
+.feat .fr img{height:100%;object-fit:cover;filter:grayscale(1) brightness(.8);}
+.feat dl{margin-top:40px;max-width:620px;}
+.feat dl div{display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-bottom:1px solid var(--hair);}
+.feat dt{font-size:14px;color:var(--dim);}
+.feat dd{font-size:14px;}
+
+/* about 예고 — 초상 + 요약 */
+.ab{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start;}
+.ab .por{display:block;aspect-ratio:3/4;overflow:hidden;background:#0d0d0d;}
+.ab .por img{height:100%;object-fit:cover;filter:grayscale(1) brightness(.8) contrast(1.05);
+  transform:scale(1.03);transition:transform 1s cubic-bezier(.16,1,.3,1),filter .5s ease;}
+.ab .por:hover img{transform:scale(1.06);filter:grayscale(0) brightness(.92);}
+.ab .bd{margin-top:22px;max-width:48ch;}
+/* about 연표와 같은 정렬 규칙 — 연도 좌, 내용 우 */
+.ab .peek{margin-top:36px;max-width:560px;border-top:1px solid var(--hair);}
+.ab .peek div{display:grid;grid-template-columns:78px 1fr;gap:20px;
+  padding:12px 0;border-bottom:1px solid var(--hair);}
+.ab .peek dt{font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums;}
+.ab .peek dd{font-size:14px;color:var(--mid);line-height:1.55;}
+.ab .more{font-size:13px;color:var(--dim);border-bottom:1px solid var(--hair);
+  padding-bottom:5px;transition:color .3s,border-color .3s;}
+.ab .more:hover{color:var(--accent);border-color:var(--accent);}
+
+/* footer — index 전용 오버라이드 */
+footer{padding:170px var(--pad) 32px;}
+footer .h1{max-width:14ch;}
+footer .cols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-top:96px;}
+footer .cols div{font-size:14px;color:var(--mid);line-height:1.9;}
+
+@media(max-width:860px){
+  section{padding-top:110px;}
+  .plates{padding-top:100px;}
+  .plate{width:auto!important;margin-left:0!important;}
+  .plate + .plate{margin-top:14vh!important;}
+  .arv{grid-template-columns:1fr;margin-top:110px;}
+  .side{position:relative;top:0;max-height:none;border-right:none;
+    border-bottom:1px solid var(--hair);padding-bottom:22px;}
+  .side h3{border-bottom:none;padding-bottom:8px;}
+  .side .yl{display:flex;flex-wrap:wrap;padding:0 16px;}
+  .side .yl a{border:1px solid var(--hair);margin:3px;padding:8px 12px;gap:8px;}
+  .side .fl{display:flex;flex-wrap:wrap;padding:0 16px;margin-top:14px;border-top:none;}
+  .side .fl button{width:auto;border:1px solid var(--hair);margin:3px;padding:8px 12px;}
+  .thead{top:0;}
+  .thead{display:none;}
+  .tr{grid-template-columns:50px 1fr 40px;}
+  .tr > div:nth-child(3),.tr > div:nth-child(4),.tr > div:nth-child(5){display:none;}
+  .det .in{grid-template-columns:1fr;}
+  .tr.open > .det{height:430px;}
+  .nums{grid-template-columns:repeat(2,1fr);gap:32px;}
+  footer{padding-top:120px;}
+}

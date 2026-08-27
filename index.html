@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonsuk Han</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<header>
+  <a href="#">Wonsuk Han</a>
+  <nav>
+    <a href="#plates">Works</a>
+    <a href="#arv">Index</a>
+    <a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <img id="hi" src="https://picsum.photos/seed/wc1/2200/1400" alt="">
+  <div class="shade"></div>
+  <div id="wall"></div>
+  <div class="cap">
+    <div>
+      <div class="t" id="ct">Re:one 不二火</div>
+      <div class="lb" id="cm">2024 — 폐지관, LED, 사운드 — H 4,000mm</div>
+    </div>
+    <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section class="intro wrap">
+  <h1 class="h1">TITLE</h1>
+  <p class="bd">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+</section>
+
+<section class="plates" id="plates"></section>
+
+<!-- <section class="say wrap">
+  <p>재료를 살 돈이 없었다.<br>그래서 <span class="accent">버려진 것</span>을 주웠다.</p>
+  <p style="font-size:16px;color:var(--mid);max-width:46ch;line-height:1.6;letter-spacing:0">담배꽁초, 부서진 스피커, 폐기된 지관. 쓸모가 끝난 자리에서 작업이 시작된다.</p>
+</section> -->
+
+<!-- <section class="nums wrap">
+  <div><div class="v num">158</div><div class="lb">기록된 작업</div></div>
+  <div><div class="v num">1,886</div><div class="lb">수거한 폐스피커</div></div>
+  <div><div class="v num">42</div><div class="lb">개인전 · 단체전</div></div>
+  <div><div class="v num">2006</div><div class="lb">아카이브 시작</div></div>
+</section> -->
+
+<!-- <section class="feat wrap">
+  <h2 class="h2">不二火 — 진리의 근원은 하나이다</h2>
+  <p class="bd">폐기 예정이던 지관 100여 개를 수거해 겹겹이 얽었다. 짙은 검정 껍질이 그 안의 붉은 불빛을 감싼다. 지관에서 흘러나오는 바흐 푸가 변주곡이 미세한 심박음과 섞여 건물 전체를 하나의 울림통으로 만든다. 쓸모를 잃은 관이 다시 소리의 통로가 된다.</p>
+  <div class="fr"><img src="https://picsum.photos/seed/wc1/1600/900" alt=""></div>
+  <dl>
+    <div><dt>재료</dt><dd>폐지관 100+, LED, 사운드</dd></div>
+    <div><dt>규모</dt><dd class="num">H 4,000mm</dd></div>
+    <div><dt>사운드</dt><dd>Bach fugue × heartbeat</dd></div>
+    <div><dt>연도</dt><dd class="num">2024</dd></div>
+  </dl>
+</section> -->
+
+<section class="arv" id="arv">
+  <aside class="side">
+    <h3 class="lb">연도</h3>
+    <div class="yl" id="yl"></div>
+    <div class="fl" id="fl">
+      <button class="on" data-f="all">All — <span id="cAll">14</span></button>
+      <button data-f="art">Art</button>
+      <button data-f="sound">Sound</button>
+      <button data-f="arch">Architectural</button>
+      <button data-f="pub">Public</button>
+    </div>
+  </aside>
+
+  <div class="tbl">
+    <div class="thead">
+      <div>No.</div><div>Title</div><div>Venue</div><div>Material</div><div>Year</div><div>+</div>
+    </div>
+    <div id="rows"></div>
+  </div>
+</section>
+
+<section class="feat wrap" id="about">
+  <div class="ab">
+    <a class="por" href="about.html">
+      <!-- 작가 사진 — 실제 초상으로 교체 -->
+      <img src="https://picsum.photos/seed/portrait-han/900/1200" alt="한원석">
+    </a>
+    <div>
+      <h2 class="h2">한원석</h2>
+      <p class="bd">설치미술가이자 건축가. 영국 왕립조각가협회 회원, 전 한국건축가협회 부회장. 버려진 사물에 소리와 빛을 넣어 존재의 자리를 되돌려주는 작업을 이어오고 있습니다.</p>
+      <dl class="peek">
+        <div><dt>2025</dt><dd>16번째 개인전 〈Langue des trous noirs〉 · 부산</dd></div>
+        <div><dt>2024</dt><dd>15번째 개인전 〈Re:Forest Sound〉 · 백해영갤러리</dd></div>
+        <div><dt>2023</dt><dd>14번째 개인전 〈不.二.火 – Re:one〉 · 금호알베르</dd></div>
+      </dl>
+      <p style="margin-top:34px"><a class="more" href="about.html">2001년부터의 연표 전체 보기 →</a></p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2 class="h1">CONTACT</h2>
+  <div class="cols">
+    <div>wonsukhan@hotmail.com<br>H lab. Studio<br>Seoul, Korea / London, UK</div>
+    <div><a href="https://www.instagram.com/han_wonsuk/">Instagram</a><br><a href="#">Archive PDF</a><br>© 2026 Wonsuk Han</div>
+  </div>
+</footer>
+
+<script type="module" src="js/home.js"></script>
+</body>
+</html>
