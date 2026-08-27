@@ -17,12 +17,15 @@ GitHub Pages 로 열 수 있습니다.
 │   ├── about.css         about.html 전용 스타일
 │   └── work.css          work.html 전용 스타일
 │
-└── js/
-    ├── data/
-    │   └── works.js      ★ 작품 아카이브 데이터 — 단 하나의 원본
-    ├── home.js            index.html 스크립트 (works.js를 import)
-    ├── about.js           about.html 스크립트 (연표·평론 데이터 포함)
-    └── work.js             work.html 스크립트 (works.js를 import)
+├── js/
+│   ├── data/
+│   │   └── works.js      ★ 작품 아카이브 데이터 — 단 하나의 원본
+│   ├── home.js            index.html 스크립트 (works.js를 import)
+│   ├── about.js           about.html 스크립트 (연표·평론 데이터 포함)
+│   └── work.js             work.html 스크립트 (works.js를 import)
+│
+└── wix-studio/
+    └── global.css         Wix Studio 에디터에 붙여넣는 별도 CSS (참고용, 사이트 동작과 무관)
 ```
 
 ## 이번에 정리한 것
@@ -63,3 +66,6 @@ python3 -m http.server 8000
   교체해야 합니다 (`js/data/works.js`의 `s`, `raw`, `done` 필드가 이미지 시드값입니다).
 - `about.html`의 작가 노트(`.stmt`)는 임시 요약 텍스트라고 표시되어 있습니다.
 - `index.html`의 `.intro` 섹션은 Lorem ipsum 자리표시자입니다.
+- `wix-studio/global.css`는 Wix Studio 에디터용 별도 파일이라, 지금 사이트
+  (순수 HTML/CSS/JS)에는 연결되어 있지 않습니다. Wix로 옮길 계획이 없다면
+  삭제해도 무방합니다.

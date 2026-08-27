@@ -4,25 +4,8 @@
    ═══════════════════════════════════════════════════════════ */
 import { WORKS as W, LABELS as L } from './data/works.js';
 
-/* 벽 해체 — 로딩 화면 대신 이것이 진입 연출이다 */
-function wall(){
-  var el = document.getElementById('wall'),
-      cols = window.innerWidth < 700 ? 9 : 16,
-      rows = window.innerWidth < 700 ? 14 : 10;
-  el.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
-  el.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
-  el.innerHTML = '';
-  var total = cols * rows, arr = [];
-  for (var i = 0; i < total; i++) { var c = document.createElement('i'); el.appendChild(c); arr.push(c); }
-  var ord = arr.map(function (_, i) { return i; });
-  for (var j = ord.length - 1; j > 0; j--) { var r = Math.floor(Math.random() * (j + 1)); var t = ord[j]; ord[j] = ord[r]; ord[r] = t; }
-  ord.forEach(function (idx, q) {
-    if (q > total * 0.985) { arr[idx].classList.add('keep'); return; } /* 두어 칸만 주황으로 남음 */
-    setTimeout(function () { arr[idx].classList.add('gone'); }, 260 + q * 6);
-  });
-}
-window.addEventListener('load', function () { document.body.classList.add('ready'); wall(); });
-window.addEventListener('resize', function () { if (document.body.classList.contains('ready')) wall(); });
+/* 진입 연출 — 히어로 이미지가 살짝 확대된 상태에서 제자리로 줄어든다 */
+window.addEventListener('load', function () { document.body.classList.add('ready'); });
 
 /* hero 전환 */
 var PL = [

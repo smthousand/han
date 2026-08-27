@@ -17,12 +17,6 @@ body.ready .hero img{transform:scale(1);}
 .hero .shade{position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,transparent 30%,transparent 62%,rgba(0,0,0,.72) 100%);}
 
-/* 벽 — 셀이 사라지며 작품이 드러난다. 글로우 없음. */
-#wall{position:absolute;inset:0;display:grid;gap:1px;z-index:2;}
-#wall i{background:var(--bg);transition:opacity .75s cubic-bezier(.16,1,.3,1);}
-#wall i.gone{opacity:0;}
-#wall i.keep{background:var(--accent);}
-
 .hero .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:28px;z-index:4;
   display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
   opacity:0;transform:translateY(8px);
