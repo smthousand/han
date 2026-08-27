@@ -22,7 +22,7 @@ const NAV = [
   { label: 'works', hash: '#plates' },
   { label: 'index', hash: '#arv' },
   { label: 'about', hash: '#about' },
-  { label: 'history', href: 'history.html', key: 'history' },
+  // { label: 'history', href: 'history.html', key: 'history' },
   { label: 'contact', hash: '#contact' }
 ];
 
