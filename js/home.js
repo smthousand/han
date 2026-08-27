@@ -3,6 +3,9 @@
    작품 아카이브 데이터는 ./data/works.js 에서 가져온다 (중복 제거).
    ═══════════════════════════════════════════════════════════ */
 import { WORKS as W, LABELS as L } from './data/works.js';
+import { mountHeader } from './header.js';
+
+mountHeader('home');
 
 /* 진입 연출 — 히어로 이미지가 살짝 확대된 상태에서 제자리로 줄어든다 */
 window.addEventListener('load', function () { document.body.classList.add('ready'); });

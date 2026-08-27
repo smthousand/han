@@ -57,8 +57,8 @@ body.ready .hero .cap{opacity:1;transform:translateY(0);}
      · 헤더 아래 수평선은 사이드바와 테이블을 끊김 없이 가로지른다.
        (.side h3 와 .thead div 의 높이를 같게 맞춰 선을 잇는다)
      · 세로선은 사이드바 오른쪽 하나뿐. 셀마다 두르지 않는다. */
-.arv{display:grid;grid-template-columns:200px 1fr;
-  padding-top:0;margin-top:150px;border-top:1px solid var(--hair);}
+.arv{display:grid;grid-template-columns:250px 1fr;
+  padding-top:0;margin-top:200px;border-top:1px solid var(--hair);}
 
 .side{border-right:1px solid var(--hair);
   position:sticky;top:var(--hdr);align-self:start;

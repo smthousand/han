@@ -1,6 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
-   about.js — about.html 전용 스크립트 (연표 + 평론 렌더링)
+   history.js — history.html 전용 스크립트 (연표 + 평론 렌더링)
+   (구 about.js — about.html 이 history.html 로 이름을 바꿨다)
    ═══════════════════════════════════════════════════════════ */
+import { mountHeader } from './header.js';
+
+mountHeader('history');
 
 /* 연표 데이터 — [연도, 분야, 내용, 부기]
    분야를 나누지 않고 한 줄기로 섞는다. */
