@@ -17,15 +17,12 @@ GitHub Pages 로 열 수 있습니다.
 │   ├── about.css         about.html 전용 스타일
 │   └── work.css          work.html 전용 스타일
 │
-├── js/
-│   ├── data/
-│   │   └── works.js      ★ 작품 아카이브 데이터 — 단 하나의 원본
-│   ├── home.js            index.html 스크립트 (works.js를 import)
-│   ├── about.js           about.html 스크립트 (연표·평론 데이터 포함)
-│   └── work.js             work.html 스크립트 (works.js를 import)
-│
-└── wix-studio/
-    └── global.css         Wix Studio 에디터에 붙여넣는 별도 CSS (참고용, 사이트 동작과 무관)
+└── js/
+    ├── data/
+    │   └── works.js      ★ 작품 아카이브 데이터 — 단 하나의 원본
+    ├── home.js            index.html 스크립트 (works.js를 import)
+    ├── about.js           about.html 스크립트 (연표·평론 데이터 포함)
+    └── work.js             work.html 스크립트 (works.js를 import)
 ```
 
 ## 이번에 정리한 것
