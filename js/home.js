@@ -12,9 +12,9 @@ window.addEventListener('load', function () { document.body.classList.add('ready
 
 /* hero 전환 — img/hero01.png, img/hero02.png, img/hero03.png ... 로컬 이미지 사용 */
 var PL = [
-  { s: 'hero01', t: 'Re:one 不二火', m: '2024 — 폐지관, LED, 사운드 — H 4,000mm' },
-  { s: 'hero02', t: 'Daybreak', m: '2021 — 폐스피커 1,886개 — Seoul' },
-  { s: 'hero03', t: 'The Resonance Forest', m: '2022 — 지관, 사운드 — 아트사이드 갤러리' }
+  { s: 'hero01', t: 'Reconciled Ⅱ, 2011', m: 'Sound Forest 2009 Φ12 x H300 cm Paper pipe 15ea , Speakers ㅡ Incheon Art Platform, Incheon, Korea' },
+  { s: 'hero02', t: 'The Flower of Evil, 2003', m: 'Collect and Stack | 10 works ㅡ Artside Gallery, Seoul, South Korea' },
+  { s: 'hero03', t: 'Sound Forest: Earth 展, 2011', m: 'Sound Forest 2009 Φ12 x H 300cm Paper Cylinder 12 ea, Speakers ㅡ Seongbuk District Art Museum, Korea' }
 ];
 var pi = 0, hi = document.getElementById('hi'), dots = document.querySelectorAll('#dots i');
 function go(k) {

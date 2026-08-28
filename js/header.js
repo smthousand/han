@@ -19,11 +19,11 @@
    - href 항목: 완전히 다른 페이지로 이동 (history.html 처럼). key 를 주면
      현재 그 페이지에 있을 때 옅게 표시된다. */
 const NAV = [
-  { label: 'works', hash: '#plates' },
-  { label: 'index', hash: '#arv' },
-  { label: 'about', hash: '#about' },
+  { label: 'WORKS', hash: '#plates' },
+  { label: 'INDEX', hash: '#arv' },
+  { label: 'ABOUT', hash: '#about' },
   // { label: 'history', href: 'history.html', key: 'history' },
-  { label: 'contact', hash: '#contact' }
+  { label: 'CONTACT', hash: '#contact' }
 ];
 
 /**

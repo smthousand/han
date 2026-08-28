@@ -69,7 +69,7 @@ header{
   display:flex;justify-content:space-between;padding:24px var(--pad);
   mix-blend-mode:difference;
 }
-header nav{display:flex;gap:24px;align-items:center;}
+header nav{display:flex;gap:24px;align-items:flex-end;}
 header a{font-size:36px;color:#fff;transition:opacity .25s;letter-spacing:-0.5px;}
 header a:hover{opacity:.45;}
 
