@@ -27,7 +27,7 @@ const NAV = [
 ];
 
 /**
- * @param {'home'|'history'} active - 지금 렌더링하는 페이지
+ * @param {'home'|'history'|'work'} active - 지금 렌더링하는 페이지
  * @returns {string} <header> 안에 채워 넣을 innerHTML
  */
 export function renderHeader(active) {

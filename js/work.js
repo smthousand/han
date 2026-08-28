@@ -3,6 +3,9 @@
    작품 아카이브 데이터는 ./data/works.js 에서 가져온다 (중복 제거).
    ═══════════════════════════════════════════════════════════ */
 import { WORKS as W, LABELS as L } from './data/works.js';
+import { mountHeader } from './header.js';
+
+mountHeader('work');
 
 (function () {
   function esc(x) {

@@ -29,7 +29,7 @@ body.ready .hero .cap{opacity:1;transform:translateY(0);}
 .dots i.on{background:#fff;}
 
 /* intro */
-.intro .h1{max-width:16ch;}
+.intro .h1{max-width:16ch;line-height:80%;}
 .intro .bd{margin-top:36px;max-width:52ch;}
 
 /* plates(teaser) — 왼쪽 수거 당시, 오른쪽 설치 이후.
