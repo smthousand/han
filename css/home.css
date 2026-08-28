@@ -29,7 +29,7 @@ body.ready .hero .cap{opacity:1;transform:translateY(0);}
 .dots i.on{background:#fff;}
 
 /* intro */
-.intro .h1{max-width:16ch;line-height:80%;}
+.intro .h1{line-height:80%;}
 .intro .bd{margin-top:36px;max-width:52ch;}
 
 /* plates(teaser) — 왼쪽 수거 당시, 오른쪽 설치 이후.
@@ -39,10 +39,12 @@ body.ready .hero .cap{opacity:1;transform:translateY(0);}
 .plate .duo{display:grid;grid-template-columns:1fr 1fr;position:relative;}
 .plate .duo figure{overflow:hidden;aspect-ratio:1;background:#070707;}
 .plate .duo img{height:100%;object-fit:cover;
-  transform:scale(1.04);transition:transform 1.7s cubic-bezier(.16,1,.3,1);}
+  transform:scale(1.04);transition:transform 1.7s cubic-bezier(.16,1,.3,1),filter .5s ease;}
 .plate.in .duo img{transform:scale(1);}
 .plate .duo .raw img{filter:grayscale(1) brightness(.44) contrast(1.4);}
 .plate .duo .done img{filter:grayscale(1) brightness(.9) contrast(1.03);}
+.plate:hover .duo .raw img{filter:grayscale(0) brightness(.62) contrast(1.15);}
+.plate:hover .duo .done img{filter:grayscale(0) brightness(1) contrast(1.02);}
 .plate .seam{position:absolute;left:50%;top:0;width:1px;background:rgba(255,255,255,.55);
   height:0;transition:height 1.4s cubic-bezier(.16,1,.3,1) .25s;}
 .plate.in .seam{height:100%;}

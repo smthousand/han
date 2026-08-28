@@ -34,7 +34,7 @@ setInterval(function () { go((pi + 1) % PL.length); }, 7000);
    아카이브 데이터와는 별개의 연출용 배치 정보(w/x/gap)를 가진 소규모 세트.
    w: 화면 대비 너비(vw) / x: 수평 위치(vw) / gap: 위 여백(vh) */
 var P = [
-  { raw: 'trash01', done: 'work01', m: '폐지관', q: '100+', y: '2024', w: 72, x: 12, gap: 0 },
+  { raw: 'plate101', done: 'plate102', m: '폐지관', q: '100+', y: '2024', w: 72, x: 12, gap: 0 },
   { raw: 'trash02', done: 'work02', m: '폐스피커', q: '1,886', y: '2021', w: 58, x: 34, gap: 26 },
   { raw: 'trash03', done: 'work03', m: '폐창틀', q: '1,042', y: '2019', w: 46, x: 8, gap: 38 },
   { raw: 'trash04', done: 'work04', m: '폐형광등', q: '3,200', y: '2023', w: 36, x: 52, gap: 52 },
@@ -50,8 +50,8 @@ P.forEach(function (p) {
   el.style.marginTop = p.gap + 'vh';
   el.innerHTML =
     '<div class="duo">' +
-      '<figure class="raw"><img src="https://picsum.photos/seed/' + p.raw + '/900/900" alt=""></figure>' +
-      '<figure class="done"><img src="https://picsum.photos/seed/' + p.done + '/900/900" alt=""></figure>' +
+      '<figure class="raw"><img src="img/' + p.raw + '.png" alt=""></figure>' +
+      '<figure class="done"><img src="img/' + p.done + '.png" alt=""></figure>' +
       '<div class="seam"></div>' +
     '</div>' +
     '<div class="fact"><span>' + p.m + '</span><span>' + p.q + '</span><span>' + p.y + '</span></div>';
