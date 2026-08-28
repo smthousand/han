@@ -53,5 +53,17 @@ export function renderHeader(active) {
 /** #site-header 요소를 찾아 헤더를 그 안에 그려 넣는다. */
 export function mountHeader(active) {
   const el = document.getElementById('site-header');
-  if (el) el.innerHTML = renderHeader(active);
+  if (!el) return;
+  el.innerHTML = renderHeader(active);
+  bindScrollBackground(el);
+}
+
+/* 히어로(100vh) 구간을 지나가면 헤더 배경을 검정으로 바꾼다.
+   히어로가 없는 페이지에서도 동작하도록 기준은 window.innerHeight 하나로 통일. */
+function bindScrollBackground(el) {
+  function update() {
+    el.classList.toggle('is-solid', window.scrollY > window.innerHeight);
+  }
+  update();
+  window.addEventListener('scroll', update, { passive: true });
 }

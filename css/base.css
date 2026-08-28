@@ -65,12 +65,22 @@ button{font-family:inherit;background:none;border:none;padding:0;cursor:pointer;
 .wrap{padding-left:var(--pad);padding-right:var(--pad);}
 
 /* 헤더 — 세 페이지 공통 */
+/* 헤더 — 세 페이지 공통 */
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;padding:24px var(--pad);
   mix-blend-mode:difference;
+  background-color:transparent;
+  transition:background-color .35s ease;
 }
-header nav{display:flex;gap:24px;align-items:flex-end;}
+/* 스크롤이 100vh(히어로 구간)를 지나가면 검정 배경으로 전환.
+   mix-blend-mode:difference 상태에서는 검정 배경이 그대로 보이지 않으므로
+   (검정과의 차이 연산 결과가 원본과 같아 사실상 투명해짐) 이 시점엔 blend 를 꺼준다. */
+header.is-solid{
+  background-color:var(--bg);
+  mix-blend-mode:normal;
+}
+header nav{display:flex;gap:24px;align-items:center;}
 header a{font-size:36px;color:#fff;transition:opacity .25s;letter-spacing:-0.5px;}
 header a:hover{opacity:.45;}
 
