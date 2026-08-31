@@ -44,6 +44,9 @@ export function renderHeader(active) {
   <a href="${active === 'home' ? '#' : 'index.html'}">
     <img src="img/logo.svg" alt="Wonsuk Han">
   </a>
+  <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <nav>
     ${links}
   </nav>
@@ -55,15 +58,44 @@ export function mountHeader(active) {
   const el = document.getElementById('site-header');
   if (!el) return;
   el.innerHTML = renderHeader(active);
-  bindScrollBackground(el);
+  // bindScrollBackground(el);
+  bindNavToggle(el);
+}
+
+/* 햄버거 버튼 — 평소엔 nav 를 숨겨두고, 누르면 전체화면 메뉴로 연다. */
+function bindNavToggle(el) {
+  const btn = el.querySelector('.nav-toggle');
+  const nav = el.querySelector('nav');
+  if (!btn || !nav) return;
+
+  function close() {
+    el.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', '메뉴 열기');
+  }
+  function open() {
+    el.classList.add('nav-open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', '메뉴 닫기');
+  }
+
+  btn.addEventListener('click', function () {
+    el.classList.contains('nav-open') ? close() : open();
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
 }
 
 /* 히어로(100vh) 구간을 지나가면 헤더 배경을 검정으로 바꾼다.
    히어로가 없는 페이지에서도 동작하도록 기준은 window.innerHeight 하나로 통일. */
-function bindScrollBackground(el) {
-  function update() {
-    el.classList.toggle('is-solid', window.scrollY > window.innerHeight);
-  }
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-}
+// function bindScrollBackground(el) {
+//   function update() {
+//     el.classList.toggle('is-solid', window.scrollY > window.innerHeight);
+//   }
+//   update();
+//   window.addEventListener('scroll', update, { passive: true });
+// }

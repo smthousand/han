@@ -34,12 +34,12 @@ setInterval(function () { go((pi + 1) % PL.length); }, 7000);
    아카이브 데이터와는 별개의 연출용 배치 정보(w/x/gap)를 가진 소규모 세트.
    w: 화면 대비 너비(vw) / x: 수평 위치(vw) / gap: 위 여백(vh) */
 var P = [
-  { raw: 'plate101', done: 'plate102', m: '폐지관', q: '100+', y: '2024', w: 72, x: 12, gap: 0 },
-  { raw: 'trash02', done: 'work02', m: '폐스피커', q: '1,886', y: '2021', w: 58, x: 34, gap: 26 },
-  { raw: 'trash03', done: 'work03', m: '폐창틀', q: '1,042', y: '2019', w: 46, x: 8, gap: 38 },
-  { raw: 'trash04', done: 'work04', m: '폐형광등', q: '3,200', y: '2023', w: 36, x: 52, gap: 52 },
-  { raw: 'trash05', done: 'work05', m: '폐지관', q: '340', y: '2024', w: 27, x: 16, gap: 64 },
-  { raw: 'trash06', done: 'work06', m: '담배꽁초', q: '11,300', y: '2022', w: 20, x: 62, gap: 78 }
+  { raw: 'plate101', done: 'plate102', m: '폐지관', q: '10T', y: '2023 2024', w: 72, x: 12, gap: 0 },
+  { raw: 'plate201', done: 'plate202', m: '폐스피커', q: '3,088', y: '2021 2022 2024', w: 58, x: 34, gap: 26 },
+  { raw: 'plate301', done: 'plate302', m: '폐금속관', q: '4', y: '2024', w: 46, x: 8, gap: 38 },
+  { raw: 'plate401', done: 'plate402', m: '사일로', q: '1', y: '2014', w: 36, x: 52, gap: 52 },
+  { raw: 'plate501', done: 'plate502', m: '폐헤드라이트', q: '1,374', y: '2006 2014 2020 2021', w: 27, x: 16, gap: 64 },
+  { raw: 'plate601', done: 'plate602', m: '담배꽁초', q: '167,670', y: '2003', w: 20, x: 62, gap: 78 }
 ];
 var ps = document.getElementById('plates');
 P.forEach(function (p) {
