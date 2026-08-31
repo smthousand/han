@@ -14,7 +14,8 @@ window.addEventListener('load', function () { document.body.classList.add('ready
 var PL = [
   { s: 'hero01', t: 'Reconciled Ⅱ, 2011', m: 'Sound Forest 2009 Φ12 x H300 cm Paper pipe 15ea , Speakers ㅡ Incheon Art Platform, Incheon, Korea' },
   { s: 'hero02', t: 'The Flower of Evil, 2003', m: 'Collect and Stack | 10 works ㅡ Artside Gallery, Seoul, South Korea' },
-  { s: 'hero03', t: 'Sound Forest: Earth 展, 2011', m: 'Sound Forest 2009 Φ12 x H 300cm Paper Cylinder 12 ea, Speakers ㅡ Seongbuk District Art Museum, Korea' }
+  { s: 'hero03', t: 'PAPAGENO RE: DREAM, 2023', m: 'Paper tube 10T ( ø)122mm, Speaker, Mixed media ㅡ Hyundai Department Store Mokdong Branch, Korea' },
+  { s: 'hero04', t: 'Sound Forest: Earth 展, 2011', m: 'Sound Forest 2009 Φ12 x H 300cm Paper Cylinder 12 ea, Speakers ㅡ Seongbuk District Art Museum, Korea' }
 ];
 var pi = 0, hi = document.getElementById('hi'), dots = document.querySelectorAll('#dots i');
 function go(k) {
