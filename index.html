@@ -3,121 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wonsuk Han</title>
+<title>한원석 — 작품 등록부</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/registry.css">
 </head>
 <body>
 
-<header id="site-header"></header>
+<header id="hdr"></header>
 
-<section class="hero">
-  <img id="hi" src="img/hero01.png" alt="">
-  <div class="shade"></div>
-  <div class="cap">
-    <div>
-      <div class="t" id="ct">Reconciled Ⅱ, 2011</div>
-      <div class="lb" id="cm">Sound Forest 2009 Φ12 x H300 cm Paper pipe 15ea , Speakers ㅡ Incheon Art Platform, Incheon, Korea</div>
-    </div>
-    <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+<section class="band">
+  <div class="band__in">
+    <!-- <div class="tot" id="tot"></div> -->
   </div>
 </section>
 
-<section class="intro wrap">
-  <h1 class="h1" style="margin-bottom:24px;;">버려진 것들의 자리</h1>
-  <h1 class="h1">The Place of the Discarded</h1>
-  <div class="bd-container">
-    <p class="bd">
-      담배꽁초, 폐헤드라이트, 낡은 컨테이너, 버려진 침목 등
-      한원석은 쓰임을 다했다고 여겨진 사물들을 모아 쌓아 올리며 그 안에 빛과 소리를 되돌려준다. 
-      설치미술과 건축이라는 두 언어를 넘나드는 그의 작업물은 재에서 다시 피어나는 불꽃처럼 
-      파괴가 아닌 재해석으로, 새로움이 아닌 화해로 30년간 이어지고 있다.
-    </p>
-    <p class="bd">
-      Cigarette butts, discarded headlights, retired shipping containers, abandoned railway sleepers—
-      Wonsuk Han gathers objects deemed to have outlived their use, stacking them back into light and sound.
-      Moving fluidly between the languages of installation art and architecture, his work has, for thirty years,
-      bloomed like a flame rising again from ash—not through destruction but reinterpretation,
-      not through novelty but reconciliation.
-    </p>
-  </div>
-</section>
+<!-- <main class="wall" id="wall"></main> -->
 
-<section class="plates" id="plates"></section>
+<footer id="ftr"></footer>
 
-<section class="arv" id="arv">
-  <aside class="side">
-    <h3 class="lb">연도</h3>
-    <div class="yl" id="yl"></div>
-    <div class="fl" id="fl">
-      <button class="on" data-f="all">All — <span id="cAll">14</span></button>
-      <button data-f="art">Art</button>
-      <button data-f="sound">Sound</button>
-      <button data-f="arch">Architectural</button>
-      <button data-f="pub">Public</button>
-    </div>
-  </aside>
+<script type="module">
+import { WORKS, STATUS } from './js/data/works.js';
+import { mount, fmt } from './js/ui.js';
 
-  <div class="tbl">
-    <div class="thead">
-      <div>No.</div><div>Title</div><div>Venue</div><div>Material</div><div>Year</div><div>+</div>
-    </div>
-    <div id="rows"></div>
-  </div>
-</section>
+mount('wall');
 
-<section class="feat wrap" id="about">
-  <div class="ab">
-    <a class="por" href="history.html">
-      <!-- 작가 사진 — 실제 초상으로 교체 -->
-      <img src="/img/han.png" alt="한원석">
-    </a>
-    <div>
-      <h2 class="h2">한원석 Wonsuk Han </h2>
-      <div class="bd-container">
-        <p class="bd">
-          한원석은 설치미술과 건축을 넘나드는 작가이자 건축가다. 
-          영국 첼시예술대학에서 미술 석사와
-          도쿄대학교에서 건축학 박사과정을 수료했으며 
-          담배꽁초·폐헤드라이트·컨테이너 등 버려진 사물을 모으고 쌓아 올리는 'Collect and Stack' 방법론으로 작업해왔다. 
-          베이징 798 예술구에 한국인 최초로 대안공간을 설립했고 
-          2018 평창동계올림픽·2014 소치동계올림픽 홍보관 뿐만 아니라 
-          삼성 블루스퀘어 리뉴얼 등 다수의 건축·공공 프로젝트를 이끌었다.
-        </p>
-        <p class="bd">
-          Wonsuk Han is an installation artist and architect working across the boundaries of art and space. Holding a Master's from Chelsea College of Art & Design (UK) and a PhD candidacy in Architecture from the University of Tokyo, he has spent three decades collecting and stacking discarded objects — cigarette butts, headlights, shipping containers — into works that reconcile rather than destroy. He founded Korea's first alternative art space in Beijing's 798 Art Zone, and has led major architectural projects including the PyeongChang and Sochi Winter Olympics pavilions and the renewal of Samsung Blue Square.
-        </p>
-      </div>
-      <dl class="peek">
-        <div><dt>1971</dt><dd>서울 출생</dd></div>
-        <div><dt>1999</dt><dd>첫 건축 프로젝트 《당림미술관》</dd></div>
-        <div><dt>2002</dt><dd>첼시예술대학(Chelsea College of Art & Design) 미술 석사</dd></div>
-        <div><dt>2003</dt><dd>첫 개인전 《악의 꽃》</dd></div>
-        <div><dt>2006</dt><dd>베이징 798 예술구 한국인 최초 대안공간 '스페이스 이음' 설립</dd></div>
-        <div><dt>2007</dt><dd>도쿄대학교 건축학 박사과정 수료</dd></div>
-        <div><dt>2012</dt><dd>《NEMO》 잇-어워드 수상</dd></div>
-        <div><dt>2014</dt><dd>소치동계올림픽 평창하우스 설계</dd></div>
-        <div><dt>2016</dt><dd>삼성 블루스퀘어 리뉴얼(Book Park) 총괄</dd></div>
-        <div><dt>2018</dt><dd>평창동계올림픽 페스티벌파크 설계</dd></div>
-        <div><dt>2024</dt><dd>《Sound Tree》 외 신작 전시</dd></div>
-        <div><dt>현재</dt><dd>H-Lab 대표, 서울·런던 기반으로 활동</dd></div>
-      </dl>
-      <p style="margin-top:34px"><a class="more" href="history.html">전체 보기 →</a></p>
-    </div>
-  </div>
-</section>
+/* 표제의 집계 — 이 작가에게 총 유닛 수는 이력서의 첫 줄에 해당한다 */
+const total = WORKS.reduce((s, w) => s + w.n, 0);
+const avail = WORKS.filter(w => w.status === 'available').length;
+document.getElementById('tot').innerHTML =
+  '<div>등록 작품<b class="num">' + String(WORKS.length).padStart(2,'0') + '</b></div>' +
+  '<div>수거 유닛 총계<b class="num">' + fmt(total) + '</b></div>' +
+  '<div>제작 기간<b class="num">2003 — 2024</b></div>' +
+  '<div>문의 가능<b class="num">' + String(avail).padStart(2,'0') + '</b></div>';
 
-<footer id="contact">
-  <h2 class="h1">CONTACT</h2>
-  <div class="cols">
-    <div>wonsukhan@hotmail.com<br>H lab. Studio<br>© 2026 Wonsuk Han</div>
-    <div><a href="https://www.instagram.com/han_wonsuk/">Instagram</a></div>
-  </div>
-</footer>
-
-<script type="module" src="js/home.js"></script>
+/* 벽 — 칸 크기가 모두 같다. 위계 없이 나란히 쌓인다. */
+document.getElementById('wall').innerHTML = WORKS.map(w =>
+  '<a class="cell" href="work.html?id=' + w.id + '">' +
+    '<img src="img/' + w.done + '.png" alt="' + w.t + '">' +
+    '<div class="cell__t">' +
+      '<b>' + w.t + '</b>' +
+      '<span class="num">' + w.y + '</span>' +
+    '</div>' +
+    '<div class="cell__u"><i class="dot dot--' + w.status + '"></i>' + w.unit + '</div>' +
+    '<div class="cell__n num">' + fmt(w.n) + '</div>' +
+  '</a>').join('');
+</script>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연보 — 한원석</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<link rel="stylesheet" href="css/registry.css">
+</head>
+<body>
+<header id="hdr"></header>
+<main class="ch" id="ch"></main>
+<footer id="ftr"></footer>
+<script type="module">
+import { T } from './js/data/chronology.js';
+import { mount } from './js/ui.js';
+mount('chrono');
+let last = null;
+document.getElementById('ch').innerHTML = T.map(r => {
+  const y = r[0] === last ? '' : r[0]; last = r[0];
+  return '<div><b class="num">' + y + '</b><div>' + r[1] +
+    (r[2] ? '<em>' + r[2] + '</em>' : '') + '</div></div>';
+}).join('');
+</script>
+</body>
+</html>

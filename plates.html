@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>도판 — 한원석</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<link rel="stylesheet" href="css/catalogue.css">
+</head>
+<body>
+
+<div class="rh" id="rh"></div>
+
+<main class="page">
+  <header class="sect">
+    <div class="sect__no">Ⅰ</div>
+    <h1 class="sect__t">도판<em>Plates</em></h1>
+    <p class="sect__note">왼쪽은 수거 당시, 오른쪽은 설치 이후. 두 판 사이의 간격이 이 작업의 내용이다.</p>
+  </header>
+
+  <div id="plates"></div>
+
+  <nav class="leaf" id="leaf"></nav>
+
+  <div class="colophon">
+    <div>wonsukhan@hotmail.com<br>H lab. Studio</div>
+    <div><a href="contents.html">← 목차</a></div>
+  </div>
+</main>
+
+<script type="module">
+import { WORKS } from './js/data/works.js';
+import { mountRH, mountLeaf } from './js/rh.js';
+
+mountRH('plates');
+mountLeaf('plates');
+
+document.getElementById('plates').innerHTML = WORKS.map(function (w) {
+  return '<article class="plate">' +
+    '<div class="plate__duo">' +
+      '<figure class="raw"><img src="img/' + w.raw + '.png" alt="' + w.t + ' — 수거 당시"></figure>' +
+      '<figure class="done"><img src="img/' + w.done + '.png" alt="' + w.t + ' — 설치 이후"></figure>' +
+    '</div>' +
+    '<div class="cap">' +
+      '<div class="cap__n num">pl. ' + w.n + '</div>' +
+      '<div>' +
+        '<a class="cap__t" href="work.html?id=' + w.n + '">' + w.t + '</a>' +
+        '<div class="cap__d">' +
+          '<span class="num">' + w.y + '</span>' +
+          '<span>' + w.m + ' ' + w.q + '</span>' +
+          '<span>' + w.size + '</span>' +
+          '<span>' + w.v + '</span>' +
+        '</div>' +
+        '<div class="cap__sub">좌 · 수거 당시 &nbsp;/&nbsp; 우 · 설치 이후</div>' +
+      '</div>' +
+    '</div>' +
+  '</article>';
+}).join('');
+</script>
+</body>
+</html>

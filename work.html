@@ -3,24 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wonsuk Han</title>
+<title>작품 — 한원석</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/work.css">
+<link rel="stylesheet" href="css/registry.css">
 </head>
 <body>
 
-<header id="site-header"></header>
-
+<header id="hdr"></header>
 <main id="main"></main>
+<footer id="ftr"></footer>
 
-<footer>
-  <div>wonsukhan@hotmail.com<br>H lab. Studio</div>
-  <div><a href="index.html#arv">← 목록으로</a></div>
-</footer>
+<script type="module">
+import { WORKS, STATUS } from './js/data/works.js';
+import { mount, fmt } from './js/ui.js';
 
-<script type="module" src="js/work.js"></script>
+mount('wall');
+
+const esc = s => String(s).replace(/[&<>"]/g,
+  m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+const id = new URLSearchParams(location.search).get('id');
+const i  = WORKS.findIndex(w => w.id === id);
+const main = document.getElementById('main');
+
+if (i < 0) {
+  main.innerHTML = '<div style="padding:80px 26px">' +
+    '<h1 style="font-size:24px">해당 등록번호가 없습니다</h1>' +
+    '<p style="margin-top:14px"><a href="registry.html" style="color:var(--accent)">등록부로 →</a></p></div>';
+} else {
+  const w = WORKS[i], prev = WORKS[i-1], next = WORKS[i+1];
+  document.title = w.t + ' — 한원석';
+
+  main.innerHTML =
+    '<div class="detail">' +
+      '<div class="detail__l">' +
+        '<div class="duo">' +
+          '<figure class="raw"><img src="img/' + w.raw + '.png" alt="수거 당시">' +
+            '<figcaption>수거 당시</figcaption></figure>' +
+          '<figure class="done"><img src="img/' + w.done + '.png" alt="설치 이후">' +
+            '<figcaption>설치 이후</figcaption></figure>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="detail__r">' +
+        '<h1>' + esc(w.t) + '<em>' + esc(w.te) + ', ' + w.y + '</em></h1>' +
+
+        '<div class="big">' +
+          '<span>' + esc(w.unit) + ' 수거 유닛</span>' +
+          '<b class="num">' + fmt(w.n) + '</b>' +
+        '</div>' +
+
+        '<dl class="spec">' +
+          '<div><dt>등록번호</dt><dd class="num">' + w.id + '</dd></div>' +
+          '<div><dt>재료</dt><dd>' + esc(w.mat) + '</dd></div>' +
+          '<div><dt>규모</dt><dd class="num">' + esc(w.dim) + '</dd></div>' +
+          '<div><dt>에디션</dt><dd>' + esc(w.ed) + '</dd></div>' +
+          '<div><dt>상태</dt><dd><i class="dot dot--' + w.status + '"></i>' +
+            STATUS[w.status].t + '</dd></div>' +
+          '<div><dt>소장</dt><dd>' + esc(w.hold) + '</dd></div>' +
+          '<div><dt>출처</dt><dd>' + esc(w.prov) + '</dd></div>' +
+        '</dl>' +
+
+        '<div class="exh"><h3>전시 이력</h3>' +
+          w.exh.map(e => '<div><span class="num">' + e[0] + '</span>' +
+            '<div>' + esc(e[1]) + '<em>' + esc(e[2]) + '</em></div></div>').join('') +
+        '</div>' +
+
+        '<div class="inq">' +
+          '<a href="mailto:wonsukhan@hotmail.com?subject=' +
+            encodeURIComponent('[작품 문의] ' + w.id + ' ' + w.t) +
+            '">wonsukhan@hotmail.com</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<nav class="nav2">' +
+      (prev ? '<a href="work.html?id=' + prev.id + '"><i>이전</i>' + esc(prev.t) + '</a>'
+            : '<span class="dis"><i>이전</i>—</span>') +
+      (next ? '<a class="next" href="work.html?id=' + next.id + '"><i>다음</i>' + esc(next.t) + '</a>'
+            : '<span class="next dis"><i>다음</i>—</span>') +
+    '</nav>';
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft'  && prev) location.href = 'work.html?id=' + prev.id;
+    if (e.key === 'ArrowRight' && next) location.href = 'work.html?id=' + next.id;
+  });
+}
+</script>
 </body>
 </html>
