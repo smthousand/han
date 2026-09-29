@@ -1,44 +1,38 @@
-# 한원석 — 작품 등록부 (Wonsuk Han, Catalogue Raisonné)
+# WONSUKHAN
 
-미술 수집가를 대상으로 한 작품 등록부. 빌드 없이 그대로 GitHub Pages 배포 가능.
+index.html 하나로 된 사이트. 빌드 없이 그대로 올리면 된다 (파일을 직접 열어도 동작).
 
-## 구성
+- works.js   작품 목록과 식별 정보
+- texts.js   작품 설명과 코멘트·인용구 (문서 원문 그대로)
+             → 두 파일 모두 「작품 정리」 구글 문서에서 자동 생성한다. 직접 고치지 말 것.
+- data.js    전시 목록 · 약력 · 연락처
+- img/bg5.png 배경 패턴 / img/logo.svg 로고
 
-```
-index.html        벽 — 작품 격자
-registry.html     등록부 — 조회용 표
-work.html?id=     개별 작품 (출처·전시이력·소장·문의)
-chronology.html   연보
-inquiry.html      소장 문의
+작품 화면에서는 보기(시리즈 / 전체 기록)와 분야(전체 / 예술 / 건축)를 고를 수 있다.
+문서에 상세가 아직 없는 작품은 '준비 중'으로 표시되고 눌러도 열리지 않는다.
+문서에 상세가 채워지면 다시 생성만 하면 자동으로 읽을 수 있는 상태가 된다.
+작품은 시리즈 단위로 묶인다. 시리즈 칸에는 전시 기록이 벽돌처럼 쌓이고,
+시리즈를 누르면 그 작품의 모든 연도·장소·행사가 표로 나온다.
 
-css/registry.css       스타일 (파일 하나)
-js/ui.js               상단·하단 공통
-js/data/works.js       ★ 작품 등록 데이터
-js/data/chronology.js  ★ 연보 데이터
-img/bg5.png            스피커 벽 패턴 (표제 띠)
-```
+## 문서가 바뀌었을 때
 
-## 작품 추가
+tools/build_data.py 가 문서를 읽어 works.js, texts.js 를 만든다 (사람이 옮겨 적지 않음).
+tools/verify.py 는 문서의 모든 줄이 데이터에 들어갔는지 대조한다.
 
-`js/data/works.js`에 항목 하나를 추가하면 벽·등록부·상세가 모두 갱신된다.
+    python3 tools/build_data.py doc.md .
+    python3 tools/verify.py
 
-- `status` 는 `available` / `soldout` / `collection` / `commission` 중 하나.
-  각각 색 점으로 표시된다 (문의 가능만 주황).
-- `n` 은 숫자로 적는다 (`167670`). 쉼표는 자동으로 붙는다.
-- `exh` 는 `[연도, 전시명, 장소]` 배열.
+doc.md 는 구글 문서를 마크다운으로 내려받은 파일.
+## 사진 넣기
 
-## 로컬에서 보기
+사진은 images.js 에서만 관리한다 (works.js 는 문서에서 다시 생성되므로 여기에 적지 않는다).
 
-ES 모듈을 쓰므로 로컬 서버가 필요하다.
+    var IMAGES = {
+      'bs-e': ['sample01.jpg', 'sample02.jpg', ...]
+    };
 
-```bash
-python3 -m http.server 8000
-```
-
-## 남은 것
-
-- 도판이 이전 작업의 임시 이미지다. 실제 촬영본으로 교체할 것
-  (`works.js` 의 `raw` = 수거 당시, `done` = 설치 이후).
-- 작품 수가 6점만 등록되어 있다. 전체 목록으로 확장 필요.
-- 가격은 넣지 않았다.
-  필요하면 `works.js` 에 필드를 추가하고 `work.html` 의 `spec` 에 한 줄 넣으면 된다.
+- 작품번호(bs-a … st-r)는 works.js 의 id 와 같다.
+- 파일은 img 폴더에 넣고 파일명만 적는다. 첫 장이 대표 사진이 되어
+  상세 페이지 맨 위에 크게 나오고, 시리즈 칸의 사진 자리에도 쓰인다.
+- 한 작품에 5~6장이 보기 좋다. 나머지는 3열 격자로 놓인다.
+- 지금 들어 있는 sample01~06 은 배치 확인용 임시 사진이다.
