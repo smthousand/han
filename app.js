@@ -52,6 +52,12 @@ var ITEMS = WORKS.map(function (w, i) {
 /* 최근 작업이 앞에 온다 (같은 해는 문서 순서) */
 ITEMS.sort(function (a, b) { return (b.w.y - a.w.y) || (a.order - b.order); });
 
+/* 필터 — 문서의 6-7 태그 기준. 태그가 적힌 작품만 해당 필터에 나온다 */
+var TAGS = ['Sound', 'Light', 'Interactive', 'Site-specific', 'Pavilion'];
+ITEMS.forEach(function (x) {
+  x.tags = (x.w.tags || '').split('/').map(function (t) { return t.trim(); }).filter(Boolean);
+});
+
 var GROUPS = [];
 WORKS.forEach(function (w, i) {
   var g = ITEMS.filter(function (x) { return x.order === i; })[0].group;
@@ -76,16 +82,16 @@ function worksPage() {
   view.innerHTML =
     '<ul class="filter">' +
       '<li><button data-f=""' + (state.f ? '' : ' class="on"') + '>All</button></li>' +
-      GROUPS.map(function (g) {
+      TAGS.map(function (g) {
         return '<li><button data-f="' + esc(g) + '"' + (state.f === g ? ' class="on"' : '') + '>' +
-          esc(label(g)) + '</button></li>';
+          esc(g) + '</button></li>';
       }).join('') +
     '</ul><div class="grid" id="grid"></div><div id="foot"></div>';
   fill();
 }
 
 function fill() {
-  var list = ITEMS.filter(function (x) { return !state.f || x.group === state.f; });
+  var list = ITEMS.filter(function (x) { return !state.f || x.tags.indexOf(state.f) >= 0; });
   document.getElementById('grid').innerHTML = list.slice(0, state.shown).map(function (x) {
     var w = x.w;
     var pic = x.img.length ? '<img src="img/' + esc(x.img[0]) + '" alt="" loading="lazy">' : ph(x.order);
@@ -111,7 +117,7 @@ view.addEventListener('click', function (e) {
 
 /* ── 작품 한 점 ────────────────────────────────────────── */
 function workPage(key) {
-  var list = ITEMS.filter(function (x) { return !state.f || x.group === state.f; });
+  var list = ITEMS.filter(function (x) { return !state.f || x.tags.indexOf(state.f) >= 0; });
   var i = -1;
   list.forEach(function (x, k) { if (x.key === key) i = k; });
   if (i < 0) { list = ITEMS; ITEMS.forEach(function (x, k) { if (x.key === key) i = k; }); }
