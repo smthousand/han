@@ -11,9 +11,10 @@ def n(s):
 heads=[(m.start(),m.group(1).strip()) for m in re.finditer(r'^# (.*)$',c,re.M)]
 total_miss = 0
 for i,(p,h) in enumerate(heads):
-    m = re.match(r'(BLACK Silhouette|Sound Tree): ([a-z])$', h)
-    if not m: continue
-    pid = ('bs-' if m.group(1).startswith('BLACK') else 'st-') + m.group(2)
+    m = re.match(r'(.+?):\s*([a-z])$', h)
+    PX = {'BLACK Silhouette':'bs','Sound Tree':'st','Rebirth':'rb','Reconciled':'rc','The Flower of Evil':'fe','Other Works':'ow','Architectural':'ar'}
+    if not m or m.group(1).strip() not in PX: continue
+    pid = PX[m.group(1).strip()] + '-' + m.group(2)
     w = [x for x in d['W'] if x.get('id')==pid][0]
     t = d['T'].get(pid, {})
     out = n(json.dumps(w, ensure_ascii=False) + t.get('en','') + t.get('ko','') +
@@ -22,9 +23,10 @@ for i,(p,h) in enumerate(heads):
     miss = []
     for line in body.split('\n'):
         L = re.sub(r'^\s*\d\.\s+', '', line).strip()
-        if not L or L.startswith('# ') or L in ('없음','작품의 식별 정보','이 작품에 대한 코멘트 또는 인용구'): continue
-        if n(L).lower() == n(w['series']).lower(): continue          # 시리즈 이름(대문자로 저장)
-        if n(L).replace(':','') == n(w['t']+w.get('ko','')).replace(':',''): continue   # 작품명 = 원어 + 국문
+        if not L or re.fullmatch(r'\d\.', L) or L.startswith('# ') or L in ('없음','작품의 식별 정보','이 작품에 대한 코멘트 또는 인용구'): continue
+        if n(L).lower() in (n(w.get('series','')).lower(), n(w.get('cat','')).lower()) and n(L): continue          # 시리즈 이름(대문자로 저장)
+        if n(L).replace(':','') == n(w['t']+w.get('ko','')).replace(':',''): continue
+        if w.get('note') and n(L).replace(':','') == n(w['t']+'-'+w['note']).replace(':',''): continue   # 작품명 = 원어 + 국문
         if n(L) and n(L) not in out: miss.append(L[:80])
     total_miss += len(miss)
     print(f'{pid}: 누락 {len(miss)}' + (''.join('\n     - '+x for x in miss[:8])))

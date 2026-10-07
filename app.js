@@ -3,7 +3,7 @@
    #w-bs-e      작품 한 점 (문서에 상세가 있는 기록)
    #w-n12       작품 한 점 (상세가 없는 기록 — 기본 정보만)
    #about       소개 · 이력
-   works.js / texts_*.js 는 「작품 정리」 문서에서 자동으로 만든 파일이라 손으로 고치지 않는다.
+   works.js / texts.js 는 「작품 정리」 문서에서 자동으로 만든 파일이라 손으로 고치지 않는다.
    사진은 images.js 에 { 'bs-e': ['파일.jpg', ...] } 식으로 적는다. */
 
 var view = document.getElementById('view');
@@ -126,7 +126,7 @@ function workPage(key) {
   var prev = list[i - 1], next = list[i + 1];
 
   var rows = [
-    ['Year', w.y], ['Series', label(x.group)], ['Size', w.size], ['Type', ko(w.type)],
+    ['Year', w.yfull || w.y], ['Series', label(x.group)], ['Size', w.size], ['Type', ko(w.type)],
     ['Place', ko(w.place)], ['Event', ko(w.event)], ['Credit', ko(w.credit)], ['Pieces', w.note]
   ].filter(function (r) { return r[1]; });
 
