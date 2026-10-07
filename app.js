@@ -31,6 +31,22 @@ function ko(s) {
   var cut = Math.max(s.lastIndexOf(':', k), s.lastIndexOf(',', k));
   return s.slice(cut + 1).trim();
 }
+/* "English: 국문" 표기에서 영문만 */
+function en(s) {
+  if (!s) return '';
+  var k = s.search(/[가-힣]/);
+  if (k < 0) return s;
+  var cut = Math.max(s.lastIndexOf(':', k), s.lastIndexOf(',', k));
+  return cut > 0 ? s.slice(0, cut).trim() : s;
+}
+
+/* ── 언어 ── EN / KR 을 눌러 바꾼다. 고른 언어는 기억해 둔다 */
+var LANG = 'en';
+try { LANG = localStorage.getItem('lang') || (/^ko/i.test(navigator.language || '') ? 'ko' : 'en'); } catch (e) {}
+function pick(s) { return LANG === 'ko' ? ko(s) : en(s); }
+function nm(w) { return LANG === 'ko' ? (w.ko || w.t) : w.t; }
+function T(a, b) { return LANG === 'ko' ? b : a; }
+
 function title(s) {
   return s.toLowerCase().replace(/(^|\s)\S/g, function (c) { return c.toUpperCase(); })
           .replace(/ (Of|The|And|In) /g, function (m) { return m.toLowerCase(); });
@@ -97,7 +113,7 @@ function fill() {
     var pic = x.img.length ? '<img src="img/' + esc(x.img[0]) + '" alt="" loading="lazy">' : ph(x.order);
     return '<article class="item"><a href="#w-' + x.key + '">' +
       '<span class="pic">' + pic +
-        '<span class="hov"><span>' + w.y + ' — ' + esc(label(x.group)) + '</span><b>' + esc(w.t) + '</b></span>' +
+        '<span class="hov"><span>' + w.y + ' — ' + esc(label(x.group)) + '</span><b>' + esc(nm(w)) + '</b></span>' +
       '</span></a></article>';
   }).join('');
   document.getElementById('foot').innerHTML = list.length > state.shown
@@ -126,12 +142,12 @@ function workPage(key) {
   var prev = list[i - 1], next = list[i + 1];
 
   var rows = [
-    ['Year', w.yfull || w.y], ['Series', label(x.group)], ['Size', w.size], ['Type', ko(w.type)],
-    ['Place', ko(w.place)], ['Event', ko(w.event)], ['Credit', ko(w.credit)], ['Pieces', w.note]
-  ].filter(function (r) { return r[1]; });
+    [T('Year', '연도'), w.yfull || w.y], [T('Series', '시리즈'), label(x.group)], [T('Size', '크기'), w.size],
+    [T('Type', '형식'), pick(w.type)], [T('Place', '장소'), pick(w.place)], [T('Event', '전시'), pick(w.event)],
+    [T('Credit', '크레딧'), pick(w.credit)], [T('Pieces', '구성'), w.note]
+  ].filter(function (r) { return r[1] && r[1] !== '없음'; });
 
-  var html = '<div class="wrap"><div class="dhead"><div><h2>' + esc(w.t) + '</h2>' +
-      (w.ko ? '<p class="sub">' + esc(w.ko) + '</p>' : '') + '</div>' +
+  var html = '<div class="wrap"><div class="dhead"><div><h2>' + esc(nm(w)) + '</h2></div>' +
     '<dl class="meta">' + rows.map(function (r) {
       return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>';
     }).join('') + '</dl></div>' +
@@ -140,19 +156,19 @@ function workPage(key) {
       : ph(x.order).replace('class="ph" style="', 'class="ph" style="background-size:260px auto;')) + '</div>';
 
   function both(o) {
-    return (o.en ? '<p class="lang">EN</p>' + paras(o.en) : '') +
-           (o.ko ? '<p class="lang">KR</p>' + paras(o.ko) : '');
+    var t = LANG === 'ko' ? (o.ko || o.en) : (o.en || o.ko);   /* 고른 언어의 글이 없으면 있는 쪽을 보여준다 */
+    return t ? paras(t) : '';
   }
   if (tx.en || tx.ko || (tx.quotes || []).length) {
     html += '<div class="body">' + both(tx) + (tx.quotes || []).map(function (q) {
-      return '<p class="by">' + esc(q.by) + '</p>' + both(q);
+      return '<p class="by">' + esc(pick(q.by)) + '</p>' + both(q);
     }).join('') + '</div>';
   }
 
   html += '<div class="pn">' +
-    (prev ? '<a href="#w-' + prev.key + '">&larr; ' + esc(prev.w.t) + '</a>' : '<span></span>') +
-    '<a class="all" href="#">All works</a>' +
-    (next ? '<a class="nx" href="#w-' + next.key + '">' + esc(next.w.t) + ' &rarr;</a>' : '<span></span>') +
+    (prev ? '<a href="#w-' + prev.key + '">&larr; ' + esc(nm(prev.w)) + '</a>' : '<span></span>') +
+    '<a class="all" href="#">' + T('All works', '전체 작품') + '</a>' +
+    (next ? '<a class="nx" href="#w-' + next.key + '">' + esc(nm(next.w)) + ' &rarr;</a>' : '<span></span>') +
     '</div></div>';
   view.innerHTML = html;
 }
@@ -175,8 +191,9 @@ function aboutPage() {
 
   view.innerHTML = '<div class="wrap about">' +
     sec('Wonsuk Han',
-      '<p>한원석은 설치미술과 건축을 넘나드는 작가이자 건축가다. 영국 첼시예술대학에서 미술 석사를, 도쿄대학교에서 건축학 박사과정을 수료했으며 담배꽁초·폐헤드라이트·폐스피커 등 버려진 사물을 모으고 쌓아 올리는 방법으로 작업해왔다. 베이징 798 예술구에 한국인 최초로 대안공간을 설립했고, 평창동계올림픽 페스티벌파크·소치동계올림픽 평창하우스·삼성 블루스퀘어 리뉴얼 등 다수의 건축·공공 프로젝트를 이끌었다.</p>' +
-      '<p>Wonsuk Han is an installation artist and architect working across the boundaries of art and space. Holding a Master\'s from Chelsea College of Art &amp; Design (UK) and a PhD candidacy in Architecture from the University of Tokyo, he has spent three decades collecting and stacking discarded objects — cigarette butts, headlights, speakers — into works that reconcile rather than destroy. He founded the first Korean alternative art space in Beijing\'s 798 Art Zone, and has led architectural projects including the PyeongChang and Sochi Winter Olympics pavilions and the renewal of Samsung Blue Square.</p>') +
+      (LANG === 'ko'
+        ? '<p>한원석은 설치미술과 건축을 넘나드는 작가이자 건축가다. 영국 첼시예술대학에서 미술 석사를, 도쿄대학교에서 건축학 박사과정을 수료했으며 담배꽁초·폐헤드라이트·폐스피커 등 버려진 사물을 모으고 쌓아 올리는 방법으로 작업해왔다. 베이징 798 예술구에 한국인 최초로 대안공간을 설립했고, 평창동계올림픽 페스티벌파크·소치동계올림픽 평창하우스·삼성 블루스퀘어 리뉴얼 등 다수의 건축·공공 프로젝트를 이끌었다.</p>'
+        : '<p>Wonsuk Han is an installation artist and architect working across the boundaries of art and space. Holding a Master\'s from Chelsea College of Art &amp; Design (UK) and a PhD candidacy in Architecture from the University of Tokyo, he has spent three decades collecting and stacking discarded objects — cigarette butts, headlights, speakers — into works that reconcile rather than destroy. He founded the first Korean alternative art space in Beijing\'s 798 Art Zone, and has led architectural projects including the PyeongChang and Sochi Winter Olympics pavilions and the renewal of Samsung Blue Square.</p>')) +
     sec('Contact', CONTACT.map(function (c) {
       var ext = /^http/.test(c[1]);
       return '<p><a href="' + esc(c[1]) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
@@ -201,6 +218,20 @@ function render() {
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', render);
+
+/* EN / KR 전환 — 주소는 그대로 두고 지금 화면만 다시 그린다 */
+var langBtn = document.querySelector('.langsw');
+function showLang() {
+  document.documentElement.lang = LANG;
+  langBtn.querySelectorAll('span').forEach(function (x) { x.classList.toggle('on', x.dataset.l === LANG); });
+}
+langBtn.addEventListener('click', function () {
+  LANG = LANG === 'ko' ? 'en' : 'ko';
+  try { localStorage.setItem('lang', LANG); } catch (e) {}
+  var y = window.scrollY;
+  showLang(); render(); window.scrollTo(0, y);
+});
+showLang();
 render();
 
 /* 맨 위로 */
